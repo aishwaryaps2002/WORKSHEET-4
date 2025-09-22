@@ -1,88 +1,89 @@
+
 #include <iostream>
 using namespace std;
-class DB; 
-class DM 
+class DB;
+class DM
 {
 private:
     int meters;
     int centimeters;
 public:
-    DM() 
-{
+    DM()
+    {
         meters = 0;
         centimeters = 0;
-}
-    DM(int m, int cm) 
-{
+    }
+    DM(int m, int cm)
+    {
         meters = m;
         centimeters = cm;
         normalize();
-}
-    void normalize() 
-{
-        if (centimeters >= 100) 
+    }
+    void normalize()
+    {
+        if (centimeters >= 100)
         {
             meters += centimeters / 100;
             centimeters = centimeters % 100;
         }
-}
-    void getdata() 
-{
+    }
+    void getdata()
+    {
         cout << "Enter meters: ";
         cin >> meters;
         cout << "Enter centimeters: ";
         cin >> centimeters;
         normalize();
-}
-    void showdata() 
-{
+    }
+    void showdata()
+    {
         cout << meters << " meters " << centimeters << " centimeters" << endl;
-}
+    }
     friend DM add(DM d1, DB d2);
 };
-class DB 
+class DB
 {
 private:
     int feet;
     int inches;
 public:
-    DB() 
-{
+    DB()
+    {
         feet = 0;
         inches = 0;
-}
-    DB(int f, int in) 
-{
+    }
+    DB(int f, int in)
+    {
         feet = f;
         inches = in;
         normalize();
-}
-    void normalize() 
-{
-        if (inches >= 12) 
+    }
+    void normalize()
+    {
+        if (inches >= 12)
         {
             feet += inches / 12;
             inches = inches % 12;
         }
-}
-    void getdata() 
-{
+    }
+    void getdata()
+    {
         cout << "Enter feet: ";
         cin >> feet;
         cout << "Enter inches: ";
         cin >> inches;
         normalize();
-}
-    void showdata() 
-{
+    }
+    void showdata()
+    {
         cout << feet << " feet " << inches << " inches" << endl;
-}
+    }
     friend DM add(DM d1, DB d2);
 };
-DM add(DM d1, DB d2) 
+DM add(DM d1, DB d2)
 {
     float total_inches = d2.feet * 12 + d2.inches;
-    float total_cm = total_inches * 2.54; 
+    float total_cm = total_inches * 2.54;
     int dm_total_cm = d1.meters * 100 + d1.centimeters;
     int sum_cm = dm_total_cm + total_cm;
     DM result;
@@ -91,7 +92,7 @@ DM add(DM d1, DB d2)
     result.normalize();
     return result;
 }
-int main() 
+int main()
 {
     DM d1, d3;
     DB d2;
