@@ -1,39 +1,40 @@
+
 #include <iostream>
 using namespace std;
-class Time 
+class Time
 {
 private:
     int hr, min, sec;
 public:
-    Time() 
-{
+    Time()
+    {
         hr = 0;
         min = 0;
         sec = 0;
         cout << "Default constructor called" << endl;
-}
-    Time(int h, int m, int s) 
-{
+    }
+    Time(int h, int m, int s)
+    {
         hr = h;
         min = m;
         sec = s;
         normalize();
         cout << "Parameterized constructor called" << endl;
-}
-    Time(const Time &t) 
-{
+    }
+    Time(const Time &t)
+    {
         hr = t.hr;
         min = t.min;
         sec = t.sec;
         cout << "Copy constructor called" << endl;
-}
-    ~Time() 
-{
-        cout << "Destructor called for Time(" 
+    }
+    ~Time()
+    {
+        cout << "Destructor called for Time("
              << hr << ":" << min << ":" << sec << ")" << endl;
-}
-    void getdata() 
-{
+    }
+    void getdata()
+    {
         cout << "Enter hours: ";
         cin >> hr;
         cout << "Enter minutes: ";
@@ -41,42 +42,42 @@ public:
         cout << "Enter seconds: ";
         cin >> sec;
         normalize();
-}
-    void showdata() 
-{
+    }
+    void showdata()
+    {
         cout << hr << " hr : " << min << " min : " << sec << " sec" << endl;
-}
-    void normalize() 
-{
-        if (sec >= 60) 
+    }
+    void normalize()
+    {
+        if (sec >= 60)
         {
             min += sec / 60;
             sec = sec % 60;
         }
-        if (min >= 60) 
+        if (min >= 60)
         {
             hr += min / 60;
             min = min % 60;
         }
-}
-    Time operator+(Time t) 
-{
+    }
+    Time operator+(Time t)
+    {
         Time temp;
         temp.hr = hr + t.hr;
         temp.min = min + t.min;
         temp.sec = sec + t.sec;
         temp.normalize();
         return temp;
-}
-    Time operator++(int) 
-{
-        Time temp = *this; 
+    }
+    Time operator++(int)
+    {
+        Time temp = *this;
         sec++;
         normalize();
-        return temp; 
-}
+        return temp;
+    }
 };
-int main() 
+int main()
 {
     Time t1, t2, t3;
     cout << "\nEnter first time:" << endl;
